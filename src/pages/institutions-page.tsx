@@ -16,7 +16,9 @@ export const InstitutionsPage: React.FC = () => {
 	const navigate = useNavigate();
 	const institutions = useSelector((state: MainStore) => state.institutions);
 	const [filtered, setFiltered] = useState<Institution[]>(institutions);
+	
 	useEffect(() => {
+		window.scrollTo({top:0});
 		const loadInitialData = async () => {
 			await InstitutionAPI.getAll().then((result) => {
 				store.dispatch(institutionsSlice.actions.set(result));
@@ -42,7 +44,7 @@ export const InstitutionsPage: React.FC = () => {
 		<div className="institutions-page">
 			<BreadCrumbs>
 				<BreadCrumbsLink text="Institutos" onSelect={() => navigate("/institutos")} />
-				<BreadCrumbsLink text="Todos los institutos" />
+				<BreadCrumbsLink text="Todos los institutos" current />
 			</BreadCrumbs>
 			<section className="info-grid">
 				<h3 className="title divide-y divide-dashed hover:divide-solid">
@@ -67,6 +69,7 @@ export const InstitutionsPage: React.FC = () => {
 							<InstitutionCard
 								key={`insititution-card-${i}`}
 								institution={institution}
+								onEditClick={(institution)=>navigate(`/institutos/${institution.id}/editar`)}
 							/>
 						);
 					})
