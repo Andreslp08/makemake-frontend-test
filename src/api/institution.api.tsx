@@ -11,8 +11,9 @@ export default class InstitutionAPI {
 	static async getAll(): Promise<Institution[]> {
 		try {
 			const data = DATA.data;
-			const insititutions: Institution[] = data.map((_institution) => {
+			const insititutions: Institution[] = data.map((_institution,i) => {
 				const institution: Institution = {
+					id:_institution.nombre.replace(' ', '-').toLowerCase(),
 					color: _institution.color,
 					assignedBooks: _institution.librosAsignados,
 					teachers: _institution.profesores,
@@ -46,6 +47,7 @@ export default class InstitutionAPI {
 			let institution: Institution | undefined;
 			if (data) {
 				institution = {
+					id:data.nombre.replace(' ', '-').toLowerCase(),
 					color: data.color,
 					assignedBooks: data.librosAsignados,
 					teachers: data.profesores,

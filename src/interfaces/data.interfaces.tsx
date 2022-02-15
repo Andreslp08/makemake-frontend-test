@@ -9,6 +9,7 @@ export  interface Student{
 }
 
 export  interface Institution{
+    id:string;
     name:string;
     phone:string;
     email:string;
