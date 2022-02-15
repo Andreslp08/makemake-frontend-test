@@ -41,7 +41,7 @@ export const EditPage: React.FC = () => {
 		getValues,
 		setValue,
 	} = useForm<EditForm>({ mode: "all", reValidateMode: "onSubmit" });
-	const [editableInputs, setEditableInputs] = useState<EditableInputs>({
+	const [inputsReadOnly, setInputsReadOnly] = useState<EditableInputs>({
 		email: true,
 		name: true,
 		package: true,
@@ -66,6 +66,12 @@ export const EditPage: React.FC = () => {
 				})
 			);
 			navigate(`/institutos/${updatedData.id}/editar`);
+            setInputsReadOnly({
+                email:true,
+                name:true,
+                package:true,
+                phone:true
+            })
 		}
 	};
 
@@ -115,7 +121,7 @@ export const EditPage: React.FC = () => {
 		editable: boolean,
 		inputName: "name" | "email" | "package" | "phone"
 	) => {
-		setEditableInputs({ ...editableInputs, [inputName]: editable });
+		setInputsReadOnly({ ...inputsReadOnly, [inputName]: editable });
 	};
 
 	return (
@@ -137,7 +143,7 @@ export const EditPage: React.FC = () => {
 							id="name"
 							placeholder="Nombre"
 							defaultValue={getValues("name")}
-							readOnly={editableInputs.name}
+							readOnly={inputsReadOnly.name}
 							{...register("name", {
 								validate: (value) => emptyValidation(value),
 							})}
@@ -145,9 +151,9 @@ export const EditPage: React.FC = () => {
 						<button
 							className="underlined-button-red  text-xs"
 							type="button"
-							onClick={() => setEditableInput(!editableInputs.name, "name")}
+							onClick={() => setEditableInput(!inputsReadOnly.name, "name")}
 						>
-							{`${editableInputs.name ? "Editar" : "Cancelar"}`}
+							{`${inputsReadOnly.name ? "Editar" : "Cancelar"}`}
 						</button>
 					</div>
 					<p className="message color-red">{errors.name?.message}</p>
@@ -167,7 +173,7 @@ export const EditPage: React.FC = () => {
 							id="phone"
 							placeholder="Número de contacto"
 							defaultValue={getValues("phone")}
-							readOnly={editableInputs.phone}
+							readOnly={inputsReadOnly.phone}
 							{...register("phone", {
 								validate: (value) => emptyValidation(value),
 							})}
@@ -175,9 +181,9 @@ export const EditPage: React.FC = () => {
 						<button
 							className="underlined-button-red  text-xs"
 							type="button"
-							onClick={() => setEditableInput(!editableInputs.phone, "phone")}
+							onClick={() => setEditableInput(!inputsReadOnly.phone, "phone")}
 						>
-							{`${editableInputs.phone ? "Editar" : "Cancelar"}`}
+							{`${inputsReadOnly.phone ? "Editar" : "Cancelar"}`}
 						</button>
 					</div>
 					<p className="message color-red">{errors.phone?.message}</p>
@@ -194,7 +200,7 @@ export const EditPage: React.FC = () => {
 							id="package"
 							placeholder="Paquete"
 							defaultValue={getValues("package")}
-							readOnly={editableInputs.package}
+							readOnly={inputsReadOnly.package}
 						/>
 					</div>
 				</fieldset>
@@ -213,7 +219,7 @@ export const EditPage: React.FC = () => {
 							id="email"
 							placeholder="Correo electronico"
 							defaultValue={getValues("email")}
-							readOnly={editableInputs.email}
+							readOnly={inputsReadOnly.email}
 							{...register("email", {
 								validate: (value) => emailValidation(value),
 							})}
@@ -221,9 +227,9 @@ export const EditPage: React.FC = () => {
 						<button
 							className="underlined-button-red  text-xs"
 							type="button"
-							onClick={() => setEditableInput(!editableInputs.email, "email")}
+							onClick={() => setEditableInput(!inputsReadOnly.email, "email")}
 						>
-							{`${editableInputs.email ? "Editar" : "Cancelar"}`}
+							{`${inputsReadOnly.email ? "Editar" : "Cancelar"}`}
 						</button>
 					</div>
 					<p className="message color-red">{errors.email?.message}</p>
