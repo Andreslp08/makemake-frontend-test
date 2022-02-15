@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import InstitutionAPI from "../api/institution.api";
+import { AddInstitution } from "../components/add-institute-card";
 import { BreadCrumbs, BreadCrumbsLink } from "../components/breadcrumbs";
 import { InstitutionCard } from "../components/institution-card";
 import { SearchInput } from "../components/search-input";
@@ -75,6 +76,7 @@ export const InstitutionsPage: React.FC = () => {
 						<h4 className="text-md color-onbackground">No se encontraron coincidencias.</h4>
 					</div>
 				)}
+                <AddInstitution onSelect={()=>alert('aquí debería agregarse una nueva sede :)')} />
 			</div>
 		</div>
 	);
