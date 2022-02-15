@@ -7,9 +7,22 @@ import { InstitutionsPage } from "./pages/institutions-page";
 import { Provider as StoreProvider } from "react-redux";
 import { store } from "./redux/store";
 import { EditPage } from "./pages/edit-page";
+import InstitutionAPI from "./api/institution.api";
+import { institutionsSlice } from "./redux/slices/institutions.silce";
 
 
 function App() {
+
+	useEffect(() => {
+		window.scrollTo({top:0});
+		const loadInitialData = async () => {
+			await InstitutionAPI.getAll().then((result) => {
+				store.dispatch(institutionsSlice.actions.set(result));
+			});
+		};
+		loadInitialData();
+	}, []);
+
 	return (
 		<StoreProvider store={store}>
 			<BrowserRouter>
