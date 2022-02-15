@@ -6,18 +6,8 @@ import { Header } from "./components/header";
 import { InstitutionsPage } from "./pages/institutions-page";
 import { Provider as StoreProvider } from "react-redux";
 import { store } from "./redux/store";
+import { EditPage } from "./pages/edit-page";
 
-// {
-//   name: "test",
-//   email: "@",
-//   assignedBooks: 3,
-//   assignedPackage: "package 1",
-//   color: "#00ff00",
-//   courses: [],
-//   phone: "42534534",
-//   students: [],
-//   teachers: 5,
-// }
 
 function App() {
 	return (
@@ -31,6 +21,7 @@ function App() {
 							<Route path="/institutos" element={<InstitutionsPage />} />
 							<Route path="/" element={<Navigate to="/institutos" />} />
 							<Route path="/institutos" element={<div>Instituto</div>} />
+							<Route path="/institutos/:id/editar" element={<EditPage/>} />
 						</Routes>
 					</div>
 				</div>
