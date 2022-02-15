@@ -11,9 +11,12 @@
     & > .link{
         font-size: 12px;
         transition: color .3s ease-in-out ;
-        &:hover{
+        &:not(.current):hover{
            color: $purple-color;
-        
+           cursor: pointer;
+       }
+       &.current{
+           font-weight: bold;
        }
        @apply flex flex-row items-center text-center;
    }
