@@ -237,7 +237,7 @@ export const EditPage: React.FC = () => {
 						</p>
 					</label>
 					<div className="field flex items-center ">
-						<ColorSelector onSelect={(color) => setValue("color", color)} />
+						<ColorSelector onSelect={(color) => setValue("color", color)} defaultColor={institution?.color} />
 					</div>
 				</fieldset>
 				<div className="flex place-self-end items-center">
