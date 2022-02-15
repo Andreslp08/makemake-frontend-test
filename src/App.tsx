@@ -10,6 +10,9 @@ import { EditPage } from "./pages/edit-page";
 import InstitutionAPI from "./api/institution.api";
 import { institutionsSlice } from "./redux/slices/institutions.silce";
 import { ToastContainer } from 'react-toastify';
+import { initFirebaseApp } from "./firebase";
+
+initFirebaseApp();
 
 function App() {
 
