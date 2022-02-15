@@ -11,3 +11,17 @@ $button-border-radius: 0px;
     @include underlined-button( $red-color );
   }
 }
+
+.bordered-button{
+  border: solid 2px var(--onbackground-color);
+  background-color: var(--background-color);
+  color: var(--onbackground-color);
+  border-radius: .25rem;
+  transition: transform .3s, color .3s, background-color .3s;
+  @apply p-1 m-1;
+  &:hover{
+    background-color: var(--onbackground-color);
+    color: var(--background-color);
+    transform: scale(1.1);
+  }
+}
