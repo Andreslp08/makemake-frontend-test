@@ -2,7 +2,6 @@ import { Institution, Student, Course } from "../interfaces/data.interfaces";
 import INSTITUTIONS_JSON from "./data.json";
 
 export default class InstitutionAPI {
-	private static data: Institution[];
 	/**
 	 * retorna un arreglo con todas las instituciones desde el archivo JSON, esto solo se utiliza para cargar la información inicial, luego solo se hace uso de la store de redux
 	 * @returns
