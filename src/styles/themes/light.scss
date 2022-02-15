@@ -1,24 +1,10 @@
 body[data-theme='light']{
-    --primary-color:#{$primary-color-light};
-    --primary-gradient-color:#{$primary-gradient-color-light};
-    --onprimary-color:#{$onprimary-color-light};
     --background-color:#{$background-color-light};
     --onbackground-color:#{$onbackground-color-light};
     --onbackground-variant-color:#{$onbackground-variant-color-light};
     --surface-color:#{$surface-color-light};
     --onsurface-color:#{$onsurface-color-light};
-    --error-color:#{$error-color-light};
-    --onerror-color:#{$onerror-color-light};
-    --successful-color:#{$successful-color-light};
-    --onsuccessful-color:#{$successful-color-light};
-    --header-background-color:#{$header-color-light};
     --disabled-color:#{$disabled-color-light};
     --ondisabled-color:#{$ondisabled-color-light};
 
-}
-:root{
-  --light-preview-backround-color:#{$background-color-light} ;
-  --light-preview-onbackround-color:#{$onbackground-color-light} ;
-  --light-preview-primary-color:#{$primary-color-light} ;
-  --light-preview-onprimary-color:#{$onprimary-color-light} ;
 }

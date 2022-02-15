@@ -8,10 +8,6 @@
   --onbackground-variant-color:#{$onbackground-variant-color-light};
   --surface-color:#{$surface-color-light};
   --onsurface-color:#{$onsurface-color-light};
-  --error-color:#{$error-color-light};
-  --onerror-color:#{$onerror-color-light};
-  --successful-color:#{$successful-color-light};
-  --onsuccessful-color:#{$successful-color-light};
   --disabled-color:#{$disabled-color-light};
   --ondisabled-color:#{$ondisabled-color-light};
   //other properties
@@ -89,17 +85,6 @@ ul{
   @apply fixed top-0 left-0 w-screen h-screen;
 }
 
-.main-title{
-  font-size: xx-large;
-  font-family: var(--font-righteous);
-  color:var(--primary-color);
-  font-weight: bold;
-  text-shadow: 
-  0 0 10px var(--surface-color),
-  0 0 10px var(--surface-color),
-  0 0 10px var(--surface-color),
-  0 0 10px var(--surface-color);
-}
 
 /*  SCROLL BAR */
 
@@ -122,7 +107,7 @@ ul{
 
 /* Handle on hover */
 *::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-color);
+  background: $purple-color;
   cursor: pointer;
 }
 
@@ -147,6 +132,25 @@ ul{
 .color-onsurface{
   color: var(--onsurface-color);
 }
+
+.bg-background{
+  background-color:var(--background-color);
+}
+.bg-onbackground{
+  background-color: var(--onbackground-color);
+}
+
+.bg-surface{
+  background-color:var(--surface-color);
+}
+.bg-onsurface{
+  background-color: var(--onsurface-color);
+}
+
+.bg-onbackground-variant{
+  background-color: var(--onbackground-variant-color);
+}
+
 
 .color{
   &-yellow{
@@ -211,58 +215,3 @@ ul{
   }
 }
 
-.bg-background{
-  background-color:var(--background-color);
-}
-.bg-onbackground{
-  background-color: var(--onbackground-color);
-}
-
-.bg-surface{
-  background-color:var(--surface-color);
-}
-.bg-onsurface{
-  background-color: var(--onsurface-color);
-}
-
-
-.bg-onbackground-variant{
-  background-color: var(--onbackground-variant-color);
-}
-
-.color-primary{
-  color:var(--primary-color);
-}
-.color-onprimary{
-  color: var(--onprimary-color);
-}
-
-.bg-primary{
-  background-color:var(--primary-color);
-}
-.bg-onprimary{
-  background-color: var(--onprimary-color);
-}
-
-.color-error{
-  color:var(--error-color);
-}
-.bg-error{
-  background-color: var(--error-color);
-}
-
-.color-successful{
-  color:var(--error-color);
-}
-.bg-successful{
-  background-color: var(--error-color);
-}
-
-// viewport height - navbar height
-.min-h-offset{
-  min-height: calc(100vh - #{$header-height} );
-}
-
-.h-offset{
-  height: calc(100vh - #{$header-height} );
-}
