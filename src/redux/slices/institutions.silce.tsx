@@ -16,30 +16,5 @@ export const institutionsSlice = createSlice({
 				return state;
 			}
 		},
-		// add: (state, action: PayloadAction<Todo>) => {
-		// 	state.push(action.payload);
-		// },
-		// delete: (state, action: PayloadAction<Todo>) => {
-		// 	return state.filter((todo) => todo.id != action.payload.id);
-		// },
-		// update: (state, action: PayloadAction<Todo>) => {
-		// 	const todos = state.filter((todo) => todo.id != action.payload.id);
-		// 	todos.push(action.payload);
-		// 	return todos;
-		// },
-		// setActive: (state, action: PayloadAction<{ todoId: number; active: boolean }>) => {
-		// 	let todo = _.clone(state.find((todo) => todo.id == action.payload.todoId));
-		// 	if (todo) {
-		// 		todo.active = action.payload.active;
-		// 		const todos = state.filter((todo) => todo.id != action.payload.todoId);
-		// 		todos.push(todo);
-		// 		return todos;
-		// 	} else {
-		// 		return state;
-		// 	}
-		// },
-		// set: (state, action: PayloadAction<Todo[]>) => {
-		// 	return action.payload;
-		// },
 	},
 });
