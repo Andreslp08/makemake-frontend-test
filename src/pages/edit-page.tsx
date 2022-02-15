@@ -115,6 +115,7 @@ export const EditPage: React.FC = () => {
 			setValue("color", institution?.color || "");
 		};
 		loadInstitutionData();
+        document.title = `Editar - ${institution?.name}`;
 	}, [institution]);
 
 	const setEditableInput = (

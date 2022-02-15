@@ -19,6 +19,7 @@ export const InstitutionsPage: React.FC = () => {
 	
 	useEffect(() => {
 		window.scrollTo({top:0});
+		document.title = 'Institutos';
 	}, []);
 
 	useEffect(() => {
