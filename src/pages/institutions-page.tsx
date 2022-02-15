@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import gsap from "gsap";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,14 +18,17 @@ export const InstitutionsPage: React.FC = () => {
 	const institutions = useSelector((state: MainStore) => state.institutions);
 	const [filtered, setFiltered] = useState<Institution[]>(institutions);
 	
-	useEffect(() => {
-		window.scrollTo({top:0});
-		document.title = 'Institutos';
-	}, []);
 
-	useEffect(() => {
-		setFiltered(institutions)
-	}, [institutions]);
+	const animations = () => {
+		const tl = gsap.timeline();
+		tl.fromTo('.info-grid > .title', {opacity:0, y:-20}, {opacity:1, y:0, ease:"back"},0.1);
+		tl.fromTo('.info-grid > .assigned', {opacity:0, y:-20}, {opacity:1, y:0, ease:"back"},0.2);
+		tl.fromTo('.info-grid > .suscription-message', {opacity:0, y:-20}, {opacity:1, y:0, ease:"back"}, 0.3);
+		tl.fromTo('.info-grid > .filter-message', {opacity:0, x:20}, {opacity:1, x:0, ease:"back"}, 0.4);
+		tl.fromTo('.info-grid > .search-input', {opacity:0, x:-20}, {opacity:1, x:0, ease:"back"}, 0.5);
+		tl.fromTo('.institution-card', {opacity:0, x:50}, {opacity:1, x:0, ease:"back", stagger:0.3 }, 0.5);
+
+	};
 
 	const filter = (value: string) => {
 		// eslint-disable-next-line array-callback-return
@@ -37,6 +41,17 @@ export const InstitutionsPage: React.FC = () => {
 		});
 		setFiltered(filteredData);
 	};
+
+	useEffect(() => {
+		window.scrollTo({top:0});
+		document.title = 'Institutos';
+		animations();
+	}, []);
+
+	useEffect(() => {
+		setFiltered(institutions)
+	}, [institutions]);
+
 
 	return (
 		<div className="institutions-page">

@@ -13,6 +13,7 @@ import { ColorSelector } from "../components/color-selector";
 import { Institution } from "../interfaces/data.interfaces";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import gsap from "gsap";
 
 type EditForm = {
 	name: string;
@@ -99,6 +100,12 @@ export const EditPage: React.FC = () => {
 		}
 	};
 
+	const animations = () => {
+		const tl = gsap.timeline();
+		tl.fromTo('.form  .fieldset', {opacity:0, x:-20}, {opacity:1, x:0, ease:"back", stagger:0.2 },0);
+		tl.fromTo('.form  .legend', {opacity:0, y:-20}, {opacity:1, y:0, ease:"back", }, 0);
+	};
+
 	useEffect(() => {
 		window.scrollTo({ top: 0 });
 		const loadStore = async () => {
@@ -108,6 +115,7 @@ export const EditPage: React.FC = () => {
 				});
 		};
 		loadStore();
+		animations();
 	}, []);
 
 	useEffect(() => {
