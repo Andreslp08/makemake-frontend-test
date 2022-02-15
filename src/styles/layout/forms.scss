@@ -2,73 +2,68 @@
   font-size: 1em;
   color: var(--onbackground-color);
   @apply flex justify-center items-center w-full flex-col;
-  .form-section {
-    @apply w-full;
-    > .form-section-name {
-      font-size: 1.5em;
-      @apply font-bold;
+  .legend {
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-bottom: solid 1px var(--onbackground-variant-color);
+    width: 100%;
+    @apply m-1 my-3;
+  }
+  .label {
+    grid-area: label;
+    font-size: 0.8rem;
+    font-weight: bold;
+    max-width: 200px;
+    > .required {
+      color: $red-color;
     }
-    > .form-fieldset {
-      border-bottom: solid;
-      border-bottom-width: 1px;
-      border-bottom-color: transparent;
-      gap: .5rem;
-      @apply grid p-0.5 m-1;
-
-      &.col {
-        grid-template-areas:
-          "label field-container"
-          "label field-container";
-        grid-template-columns: 1fr 1fr;
-        & > .form-field-container {
-          @apply self-start place-self-end;
-        }
-        & > .form-label {
-          @apply self-center;
-        }
-      }
-
-      &.row {
-        grid-template-areas:
-          "label label"
-          "field-container field-container";
-        & > .form-field-container {
-          @apply place-self-center w-full;
-        }
-      }
-
-      &.separator {
-        border-bottom-color: var(--onbackground-variant-color);
-      }
-
-      > .form-label {
-        grid-area: label;
-      }
-
-
-      @media screen and (max-width: 350px) {
-        &.col {
-          grid-template-areas:
-            "label label"
-            "field-container field-container";
-
-          & > .form-field-container {
-            @apply place-self-center;
-          }
-        }
-      }
+    > .description {
+      font-weight: normal;
+      font-size: 0.7rem;
+      color: var(--onbackground-variant-color);
     }
   }
+  .fieldset {
+    border-bottom: solid 1px var(--onbackground-variant-color);
+    width: 100%;
+    grid-template-areas:
+      "label field"
+      "message message";
+    grid-template-columns: 1fr 1fr;
+    @apply grid;
 
-  .form-field-container {
-    grid-area: field-container;
-    @apply  h-fit flex flex-col justify-start items-center;
+    > .message {
+      grid-area: message;
+      @apply place-self-center;
+    }
+  }
+  .message{
+    font-size: .7rem;
+    font-weight: bold;
+  }
 
-    & > .message {
-      width: fit-content;
-      height: fit-content;
-      font-size: 0.8em;
-      color: var(--error-color);
+  .field {
+    grid-area: field;
+    @apply w-full flex items-center justify-start m-2;
+  }
+
+  .text-field{
+    @apply w-max;
+  }
+  
+  @media screen and (max-width:1024px) {
+    .fieldset {
+      grid-template-areas:
+        "label label"
+        "field field"
+        "message message";
+      @apply grid;
+    }
+    .label{
+      max-width: max-content;
+    }
+    .text-field{
+      @apply w-full;
     }
   }
 }
