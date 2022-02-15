@@ -9,7 +9,7 @@ import { store } from "./redux/store";
 import { EditPage } from "./pages/edit-page";
 import InstitutionAPI from "./api/institution.api";
 import { institutionsSlice } from "./redux/slices/institutions.silce";
-
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -39,6 +39,7 @@ function App() {
 					</div>
 				</div>
 			</BrowserRouter>
+			<ToastContainer/>
 		</StoreProvider>
 	);
 }

@@ -11,6 +11,9 @@ import { store } from "../redux/store";
 import { institutionsSlice } from "../redux/slices/institutions.silce";
 import { ColorSelector } from "../components/color-selector";
 import { Institution } from "../interfaces/data.interfaces";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 type EditForm = {
 	name: string;
 	phone: string;
@@ -72,6 +75,7 @@ export const EditPage: React.FC = () => {
                 package:true,
                 phone:true
             })
+            toast.success('La información se actualizo satisfactoriamente.', {theme:localStorage.getItem('theme') || 'light' as any});
 		}
 	};
 
