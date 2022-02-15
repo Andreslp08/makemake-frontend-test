@@ -1,0 +1,30 @@
+.color-selector {
+    font-size: 1em;
+    @apply flex flex-row flex-wrap justify-center items-center;
+
+}
+
+.color-card{
+    &-none{
+        @include color-card-creator(var(--surface-color))
+    }
+    &-red{
+        @include color-card-creator($red-color)
+    }
+    &-orange{
+        @include color-card-creator($orange-color)
+    }
+    &-yellow{
+        @include color-card-creator($yellow-color)
+    }
+    &-green{
+        @include color-card-creator($green-color)
+    }
+    &-blue{
+        @include color-card-creator($blue-color)
+    }
+    &-purple{
+        @include color-card-creator($purple-color)
+    }
+
+}
