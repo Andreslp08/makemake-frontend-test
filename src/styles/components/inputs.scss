@@ -1,0 +1,111 @@
+// .primary-textfield {
+//   @include textfield(var(--primary-color), rgba(100, 100, 100, 1), var(--onprimary-color), var(--primary-color));
+// }
+
+// .background-textfield {
+//   @include textfield(var(--onbackground-color), rgba(100, 100, 100, 1), var(--background-color), var(--primary-color));
+// }
+
+// .primary-basic-textarea {
+//   @include textarea(var(--primary-color), rgba(100, 100, 100, 1), var(--onprimary-color), var(--primary-color));
+// }
+
+// .background-basic-textarea {
+//   @include textarea(var(--onbackground-color), rgba(100, 100, 100, 1), var(--background-color), var(--primary-color));
+// }
+
+// .text-field {
+//   @include text-field-creator(
+//     var(--background-color),
+//     var(--onbackground-color),
+//     var(--onbackground-color),
+//     var(--onbackground-variant-color)
+//   );
+// }
+
+// .background-text-field {
+//   @include text-field-creator(
+//     var(--background-color),
+//     var(--onbackground-color),
+//     var(--primary-color),
+//     var(--onbackground-variant-color)
+//   );
+// }
+// .primary-text-field {
+//   @include text-field-creator(
+//     var(--onprimary-color),
+//     var(--primary-color),
+//     var(--primary-color),
+//     var(--onbackground-variant-color)
+//   );
+// }
+
+// .surface-text-field {
+//   @include text-field-creator(
+//     var(--surface-color),
+//     var(--onsurface-color),
+//     var(--primary-color),
+//     var(--onbackground-variant-color)
+//   );
+// }
+
+// .text-area{
+//   @include text-area-creator(
+//     var(--background-color),
+//     var(--onbackground-color),
+//     var(--onbackground-color),
+//     var(--onbackground-variant-color)
+//   );
+// }
+
+// .background-text-area {
+//   @include text-area-creator(
+//     var(--background-color),
+//     var(--onbackground-color),
+//     var(--primary-color),
+//     var(--onbackground-variant-color)
+//   );
+// }
+// .primary-text-area {
+//   @include text-area-creator(
+//     var(--onprimary-color),
+//     var(--primary-color),
+//     var(--primary-color),
+//     var(--onbackground-variant-color)
+//   );
+// }
+
+// .surface-text-area {
+//   @include text-area-creator(
+//     var(--surface-color),
+//     var(--onsurface-color),
+//     var(--primary-color),
+//     var(--onbackground-variant-color)
+//   );
+// }
+
+.text-field {
+  @include text-field-creator(var(--onbackground-color), var(--onbackground-color), var(--onbackground-variant-color), $purple-color);
+}
+
+.search-input {
+  width: 100%;
+  @apply relative flex items-center;
+  > .text-field {
+    width: 100%;
+    height: min-content;
+  }
+  > .search-icon {
+    width: 22px;
+    fill: var(--onbackground-variant-color);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s, fill 0.3s;
+    @apply absolute right-0 p-1;
+    &:hover {
+      fill: $blue-color;
+      transform: translateY(-50%) scale(1.1);
+      @apply cursor-pointer;
+    }
+  }
+}

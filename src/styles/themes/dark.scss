@@ -1,0 +1,23 @@
+body[data-theme='dark']{
+    --primary-color:#{$primary-color-dark};
+    --primary-gradient-color:#{$primary-gradient-color-dark};
+    --onprimary-color:#{$onprimary-color-dark};
+    --background-color:#{$background-color-dark};
+    --onbackground-color:#{$onbackground-color-dark};
+    --onbackground-variant-color:#{$onbackground-variant-color-dark};
+    --surface-color:#{$surface-color-dark};
+    --onsurface-color:#{$onsurface-color-dark};
+    --error-color:#{$error-color-dark};
+    --onerror-color:#{$onerror-color-dark};
+    --successful-color:#{$successful-color-dark};
+    --onsuccessful-color:#{$successful-color-dark};
+    --header-background-color:#{$header-color-dark};
+    --disabled-color:#{$disabled-color-dark};
+    --ondisabled-color:#{$ondisabled-color-dark};
+}
+:root{
+  --dark-preview-backround-color:#{$background-color-dark} ;
+  --dark-preview-onbackround-color:#{$onbackground-color-dark} ;
+  --dark-preview-primary-color:#{$primary-color-dark} ;
+  --dark-preview-onprimary-color:#{$onprimary-color-dark} ;
+}

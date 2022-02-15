@@ -1,0 +1,28 @@
+.institution-card {
+    width: 100%;
+    max-width: 300px;
+    min-height: 200px;
+    background-color: var(--surface-color);
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 0.25rem;
+    font-size: .7rem;
+    @apply flex flex-col items-center justify-center m-2 overflow-hidden;
+    > .title {
+        color: #fff;
+        box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.25);
+        font-size: 1rem;
+        @apply w-full text-center p-1 font-bold;
+    }
+    > .option{
+        border-bottom: solid 1px #fff;
+        @apply w-full flex flex-row flex-wrap justify-between p-1 m-1 mx-2;
+    }
+
+    .icon{
+        width: 15px;
+        height: 15px;
+        fill: var(--onbackground-variant-color);
+        color: var(--onbackground-variant-color);
+        @apply m-1;
+    }
+}

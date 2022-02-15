@@ -1,0 +1,32 @@
+.theme-selector {
+    font-size: 1em;
+    @apply flex flex-row flex-wrap justify-center items-center;
+
+}
+
+.theme-card{
+    &-light{
+        @include theme-card-creator(
+            $background-color-light,
+            $onbackground-color-light,
+            $onbackground-variant-color-light,
+            $surface-color-light,
+            $onsurface-color-light,
+            $primary-gradient-color-light,
+            $primary-color-light,
+            $onprimary-color-light
+             )
+    }
+    &-dark{
+        @include theme-card-creator(
+            $background-color-dark,
+            $onbackground-color-dark,
+            $onbackground-variant-color-dark,
+            $surface-color-dark,
+            $onsurface-color-dark,
+            $primary-gradient-color-dark,
+            $primary-color-dark,
+            $onprimary-color-dark
+             )
+    }
+}

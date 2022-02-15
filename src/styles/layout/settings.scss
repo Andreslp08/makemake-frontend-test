@@ -1,0 +1,74 @@
+.settings-container {
+  font-size: 1em;
+  color: var(--onbackground-color);
+  @apply flex justify-center items-center w-full flex-col;
+  .settings-group {
+    @apply w-full;
+    > .settings-group-name {
+      font-size: 1.5em;
+      @apply font-bold;
+    }
+    > .settings-option {
+      border-bottom: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: transparent;
+      gap: .5rem;
+      @apply grid p-0.5 m-1;
+
+      &.col {
+        grid-template-areas:
+          "label field-container"
+          "label field-container";
+        grid-template-columns: 1fr 1fr;
+        & > .settings-option-element {
+          @apply self-start place-self-end;
+        }
+        & > .settings-option-label {
+          @apply self-center;
+        }
+      }
+
+      &.row {
+        grid-template-areas:
+          "label label"
+          "field-container field-container";
+        & > .settings-option-element {
+          @apply place-self-center w-full;
+        }
+      }
+
+      &.separator {
+        border-bottom-color: var(--onbackground-variant-color);
+      }
+
+      > .settings-option-label {
+        grid-area: label;
+      }
+
+
+      @media screen and (max-width: 350px) {
+        &.col {
+          grid-template-areas:
+            "label label"
+            "field-container field-container";
+
+          & > .settings-option-element {
+            @apply place-self-center;
+          }
+        }
+      }
+    }
+  }
+
+  .settings-option-element {
+    grid-area: field-container;
+    @apply  h-fit flex flex-col justify-start items-center;
+
+    & > .message {
+      width: fit-content;
+      height: fit-content;
+      font-size: 0.8em;
+      color: var(--error-color);
+    }
+  }
+}

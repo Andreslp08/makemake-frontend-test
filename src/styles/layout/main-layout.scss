@@ -1,0 +1,17 @@
+.main-layout {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "main";
+    grid-template-rows: min-content 1fr;
+    grid-template-columns:1fr;
+    & > .header {
+        grid-area: header;
+    }
+    & > .main {
+        grid-area: main;
+        overflow-x: hidden;
+        min-height: calc(100vh - #{$header-height});
+        @apply flex w-full p-2 pl-3;
+    }
+}

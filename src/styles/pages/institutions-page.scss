@@ -1,0 +1,67 @@
+.institutions-page {
+    @apply flex flex-col w-full;
+    .info-grid {
+        grid-template-areas:
+            "title assigned"
+            "filter-message suscription-message"
+            "search-input suscription-message";
+        @apply grid gap-2;
+        > .title {
+            grid-area: title;
+            color: var(--onbackground-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            @apply place-self-start text-center;
+        }
+        > .assigned {
+            grid-area: assigned;
+            color: $purple-color;
+            font-weight: bold;
+            font-size: 0.8rem;
+            @apply  place-self-end text-center;
+        }
+
+        > .filter-message {
+            grid-area: filter-message;
+            color: var(--onbackground-variant-color);
+            font-size: 0.8rem;
+            @apply self-center place-self-start text-center;
+        }
+        > .suscription-message {
+            grid-area: suscription-message;
+            background-color: $red-color;
+            color: #fff;
+            font-size: 0.8rem;
+            @apply w-min place-self-end text-center p-2 rounded-md;
+        }
+        > .search-input{
+            grid-area: search-input;
+        }
+
+        @media screen and (max-width:1024px) {
+            grid-template-areas:
+            "title assigned"
+            "suscription-message suscription-message"
+            "filter-message filter-message"
+            "search-input search-input";
+
+            > .suscription-message{
+                @apply w-full;
+            }
+        }
+        @media screen and (max-width:480px) {
+            grid-template-areas:
+            "title"
+            "suscription-message"
+            "filter-message"
+            "assigned"
+            "search-input";
+            > .assigned{
+                @apply place-self-start;
+            }
+            > .suscription-message{
+                @apply w-full;
+            }
+        }
+    }
+}

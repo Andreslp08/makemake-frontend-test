@@ -1,0 +1,191 @@
+@mixin button($color, $bg-color, $radius) {
+  position: relative;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color: $color;
+  background-color: $bg-color;
+  font-family: var(--font-quicksand), Courier, monospace;
+  border-radius: $radius;
+  font-weight: bold;
+  transform: scale(0.9);
+  transition: transform 0.3s;
+  &:hover {
+    color: $bg-color;
+    transform: scale(1.1);
+  }
+
+  &:hover::after {
+    transform: scaleX(1.1) scaleY(1.2);
+  }
+
+  &:active,
+  :focus {
+    transform: scale(1.1);
+  }
+  &:active::after,
+  :focus::after {
+    transform: scale(0.9);
+    border-width: 2px;
+    border-color: $bg-color;
+  }
+}
+
+@mixin underlined-button($color) {
+  color: $color;
+  border-bottom: solid 2px $color;
+  transition: transform 0.3s;
+  cursor: pointer;
+  font-weight: bold;
+  @apply p-0.5 w-fit h-fit;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@mixin text-field-creator($color, $background-color, $border-color, $accent-color){
+  border: solid 1px $border-color;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  height: min-content;
+  transition: border .3s, box-shadow .3s;
+  @apply p-1;
+ &:focus, &:active{
+  border-color: $accent-color;
+  box-shadow: 0 0 5px 0px $accent-color;
+ }
+}
+
+
+@mixin link($color, $hoverColor, $decoration: true) {
+  color: $color;
+  position: relative;
+  transition: color 0.3s;
+  @apply p-1;
+  &:hover {
+    color: $hoverColor;
+    cursor: pointer;
+  }
+  &:before {
+    content: "";
+    border-bottom: solid;
+    border-bottom-width: 1.5px;
+    border-bottom-color: $hoverColor;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: 100% 0%;
+    @apply absolute top-0 left-0 w-full h-full;
+  }
+  @if $decoration == true {
+    &:hover::before {
+      transform-origin: 0% 50%;
+      transform: scaleX(1);
+    }
+  }
+}
+
+@mixin theme-card-creator(
+  $background-color,
+  $onbackground-color,
+  $onbackground-variant-color,
+  $surface-color,
+  $onsurface-color,
+  $primary-gradient-color,
+  $primary-color,
+  $onprimary-color
+) {
+  width: 200px;
+  box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.25), -8px 13px 18px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background-color: $background-color;
+  gap: 0.5rem;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  overflow: hidden;
+  border: solid 2px transparent;
+  @apply relative flex flex-col p-2 m-1;
+
+  &.selected {
+    border-color: $primary-color;
+  }
+
+  &.selected > .icon {
+    opacity: 1;
+  }
+
+  & > .icon {
+    width: 40%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    background: transparent;
+    color: $primary-color;
+    opacity: 0;
+    transition: opacity 0.3s;
+    @apply absolute;
+  }
+
+  &:not(.selected):hover {
+    box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.5), -8px 13px 18px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2.5%);
+    @apply cursor-pointer;
+  }
+
+  > .title {
+    font-size: 1.2em;
+    width: 100%;
+    white-space: nowrap;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: var(--font-righteous);
+    color: $onbackground-color;
+    border-bottom: solid 2px $onbackground-variant-color;
+  }
+  > .text {
+    height: 50px;
+    background-color: $surface-color;
+    border-radius: 10px;
+    gap: 0.5rem;
+    @apply w-full flex flex-row flex-wrap items-center justify-start p-2;
+    > .text-word {
+      width: calc(100% / 4);
+      background-color: $onsurface-color;
+      height: 5px;
+      @apply rounded-full self-start;
+    }
+    :nth-child(1) {
+      width: 35%;
+    }
+    :nth-child(2) {
+      width: 55%;
+    }
+
+    :nth-child(4) {
+      width: 35%;
+    }
+    :nth-child(6) {
+      width: 40%;
+    }
+    :nth-child(7) {
+      width: 20%;
+    }
+  }
+  > .button {
+    width: 65px;
+    height: 18px;
+    background: $primary-gradient-color;
+    background-color: $primary-color;
+    @apply relative rounded-full place-self-end;
+    &:before {
+      content: "";
+      width: 65%;
+      height: 2px;
+      background-color: $onprimary-color;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @apply absolute;
+    }
+  }
+}

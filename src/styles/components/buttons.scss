@@ -1,0 +1,13 @@
+$button-border-radius: 0px;
+
+.button{
+  &-yellow{
+    @include button(#fff,$yellow-color, #{$button-border-radius});
+  }
+}
+
+.underlined-button{
+  &-red{
+    @include underlined-button( $red-color );
+  }
+}

@@ -1,0 +1,20 @@
+.breadcrumbs{
+    color: var(--onbackground-color);
+    background-color: var(--surface-color);
+   @apply flex flex-row items-center flex-wrap p-1 m-1 w-fit rounded-md; 
+   & > .separator{
+       transform: rotate(90deg);
+       color:var(--onbackground-color);
+       max-width: 10px;
+       max-height: 10px;
+    }
+    & > .link{
+        font-size: 12px;
+        transition: color .3s ease-in-out ;
+        &:hover{
+           color: $purple-color;
+        
+       }
+       @apply flex flex-row items-center text-center;
+   }
+}

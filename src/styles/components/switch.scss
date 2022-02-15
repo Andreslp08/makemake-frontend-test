@@ -1,0 +1,42 @@
+.switch {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    border-radius: 25px;
+    transition: box-shadow .3s;
+    background-color: $blue-color;
+    &:hover {
+      cursor: pointer;
+    }
+    & >.switch-toogle {
+      position: absolute;
+      width: 40%;
+      height: 80%;
+      top: calc((100% - 80%) / 2);
+      left: 4px;
+      transform: translateX(0);
+      border-radius: 100%;
+      transition: transform 0.3s, background-color 0.3s;
+      &.switch-activated {
+        transform: translateX(calc(100% + 2px));
+      }
+      &.switch-desactivated {
+        transform: translateX(0);
+      }
+    }
+    &.on {
+      box-shadow: 0 0 6px .3px $blue-color;
+    }
+    &.on > .switch-toogle {
+        transform: translateX(calc(100% + 2px));
+      }
+      &.off > .switch-toogle {
+        transform: translateX(0);
+      }
+    &.disabled{
+        cursor: not-allowed;
+        box-shadow:none;
+        background-color: #444;
+    }
+  }
+  
