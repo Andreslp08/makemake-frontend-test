@@ -1,19 +1,18 @@
 import { Institution, Student, Course } from "../interfaces/data.interfaces";
-import DATA from "./data.json";
+import INSTITUTIONS_JSON from "./data.json";
 
 export default class InstitutionAPI {
-
-    private static data:Institution[];
+	private static data: Institution[];
 	/**
-	 * retorna un arreglo con todas las instituciones
+	 * retorna un arreglo con todas las instituciones desde el archivo JSON, esto solo se utiliza para cargar la información inicial, luego solo se hace uso de la store de redux
 	 * @returns
 	 */
 	static async getAll(): Promise<Institution[]> {
 		try {
-			const data = DATA.data;
-			const insititutions: Institution[] = data.map((_institution,i) => {
+			const data = INSTITUTIONS_JSON.data;
+			const insititutions: Institution[] = data.map((_institution, i) => {
 				const institution: Institution = {
-					id:_institution.nombre.replace(' ', '-').toLowerCase(),
+					id: _institution.nombre.replace(" ", "-").toLowerCase(),
 					color: _institution.color,
 					assignedBooks: _institution.librosAsignados,
 					teachers: _institution.profesores,
@@ -36,39 +35,4 @@ export default class InstitutionAPI {
 		}
 	}
 
-	/**
-	 * busca y retorna institución por el nombre
-	 * @param{string} name - nombre de la institución
-	 * @returns retorna una institución por el nombre, si no la encuentra retorna undefined.
-	 */
-	static async find(name: string): Promise<Institution | undefined> {
-		try {
-			const data = DATA.data.find((_institution) => _institution.nombre == name);
-			let institution: Institution | undefined;
-			if (data) {
-				institution = {
-					id:data.nombre.replace(' ', '-').toLowerCase(),
-					color: data.color,
-					assignedBooks: data.librosAsignados,
-					teachers: data.profesores,
-					email: data.correo,
-					assignedPackage: data.paqueteAsignado,
-					name: data.nombre,
-					phone: data.telefono,
-					students: data.estudiantes.map((student) => {
-						return { id: student.id, name: student.estudianteNombre };
-					}),
-					courses: data.cursos.map((course) => {
-						return { id: course.id, name: course.cursoNombre };
-					}),
-				};
-			} else {
-				institution = undefined;
-			}
-
-			return Promise.resolve(institution);
-		} catch (error) {
-			return Promise.reject(error);
-		}
-	}
 }
