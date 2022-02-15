@@ -9,6 +9,8 @@ import { MainStore } from "../interfaces/store.interface";
 import InstitutionAPI from "../api/institution.api";
 import { store } from "../redux/store";
 import { institutionsSlice } from "../redux/slices/institutions.silce";
+import { ColorSelector } from "../components/color-selector";
+import { Institution } from "../interfaces/data.interfaces";
 type EditForm = {
 	name: string;
 	phone: string;
@@ -17,7 +19,7 @@ type EditForm = {
 	package: string;
 };
 
-type DisabledInputs = {
+type EditableInputs = {
 	name: boolean;
 	phone: boolean;
 	email: boolean;
@@ -38,9 +40,8 @@ export const EditPage: React.FC = () => {
 		getFieldState,
 		getValues,
 		setValue,
-		setFocus,
 	} = useForm<EditForm>({ mode: "all", reValidateMode: "onSubmit" });
-	const [disabledInputs, setDisabledInputs] = useState<DisabledInputs>({
+	const [editableInputs, setEditableInputs] = useState<EditableInputs>({
 		email: true,
 		name: true,
 		package: true,
@@ -48,7 +49,24 @@ export const EditPage: React.FC = () => {
 	});
 
 	const submit: SubmitHandler<EditForm> = (data: EditForm) => {
-		console.log(data);
+		if (institution) {
+			const updatedData: Institution = {
+				...institution,
+				email: data.email,
+				phone: data.phone,
+				color: data.color,
+				name: data.name,
+				assignedPackage: data.package,
+				id: data.name.trim().replace(" ", "-").toLowerCase(),
+			};
+			store.dispatch(
+				institutionsSlice.actions.updateOne({
+					id: institution.id,
+					institution: updatedData,
+				})
+			);
+			navigate(`/institutos/${updatedData.id}/editar`);
+		}
 	};
 
 	const emptyValidation = (value: string): string | boolean => {
@@ -93,15 +111,15 @@ export const EditPage: React.FC = () => {
 		loadInstitutionData();
 	}, [institution]);
 
-	const disabledInput = (
-		disabled: boolean,
+	const setEditableInput = (
+		editable: boolean,
 		inputName: "name" | "email" | "package" | "phone"
 	) => {
-		setDisabledInputs({ ...disabledInputs, [inputName]: disabled });
+		setEditableInputs({ ...editableInputs, [inputName]: editable });
 	};
 
 	return (
-		<div className="edit-page">
+		<div className="w-full">
 			<BreadCrumbs>
 				<BreadCrumbsLink text="institutos" onSelect={() => navigate("/institutos")} />
 				<BreadCrumbsLink text="Editar instituto" current />
@@ -119,17 +137,17 @@ export const EditPage: React.FC = () => {
 							id="name"
 							placeholder="Nombre"
 							defaultValue={getValues("name")}
+							readOnly={editableInputs.name}
 							{...register("name", {
 								validate: (value) => emptyValidation(value),
-								disabled: disabledInputs.name,
 							})}
 						/>
 						<button
 							className="underlined-button-red  text-xs"
 							type="button"
-							onClick={() => disabledInput(!disabledInputs.name, "name")}
+							onClick={() => setEditableInput(!editableInputs.name, "name")}
 						>
-							 {`${disabledInputs.name?'Editar':'Cancelar'}`}
+							{`${editableInputs.name ? "Editar" : "Cancelar"}`}
 						</button>
 					</div>
 					<p className="message color-red">{errors.name?.message}</p>
@@ -149,17 +167,17 @@ export const EditPage: React.FC = () => {
 							id="phone"
 							placeholder="Número de contacto"
 							defaultValue={getValues("phone")}
+							readOnly={editableInputs.phone}
 							{...register("phone", {
 								validate: (value) => emptyValidation(value),
-								disabled: disabledInputs.phone,
 							})}
 						/>
 						<button
 							className="underlined-button-red  text-xs"
 							type="button"
-							onClick={() => disabledInput(!disabledInputs.phone, "phone")}
+							onClick={() => setEditableInput(!editableInputs.phone, "phone")}
 						>
-                            {`${disabledInputs.phone?'Editar':'Cancelar'}`}
+							{`${editableInputs.phone ? "Editar" : "Cancelar"}`}
 						</button>
 					</div>
 					<p className="message color-red">{errors.phone?.message}</p>
@@ -176,7 +194,7 @@ export const EditPage: React.FC = () => {
 							id="package"
 							placeholder="Paquete"
 							defaultValue={getValues("package")}
-							{...register("package", { disabled: disabledInputs.package })}
+							readOnly={editableInputs.package}
 						/>
 					</div>
 				</fieldset>
@@ -195,17 +213,17 @@ export const EditPage: React.FC = () => {
 							id="email"
 							placeholder="Correo electronico"
 							defaultValue={getValues("email")}
+							readOnly={editableInputs.email}
 							{...register("email", {
 								validate: (value) => emailValidation(value),
-								disabled: disabledInputs.email,
 							})}
 						/>
 						<button
 							className="underlined-button-red  text-xs"
 							type="button"
-							onClick={() => disabledInput(!disabledInputs.email, "email")}
+							onClick={() => setEditableInput(!editableInputs.email, "email")}
 						>
-							 {`${disabledInputs.email?'Editar':'Cancelar'}`}
+							{`${editableInputs.email ? "Editar" : "Cancelar"}`}
 						</button>
 					</div>
 					<p className="message color-red">{errors.email?.message}</p>
@@ -218,7 +236,9 @@ export const EditPage: React.FC = () => {
 							página de inicio.
 						</p>
 					</label>
-					<div className="field flex items-center ">imagenes</div>
+					<div className="field flex items-center ">
+						<ColorSelector onSelect={(color) => setValue("color", color)} />
+					</div>
 				</fieldset>
 				<div className="flex place-self-end items-center">
 					<button
