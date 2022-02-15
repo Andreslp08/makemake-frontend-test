@@ -37,48 +37,32 @@
   cursor: pointer;
   font-weight: bold;
   @apply p-0.5 w-fit h-fit;
-  &:hover {
+  &:hover, &:focus, &:active {
     transform: scale(1.1);
   }
 }
 
-@mixin text-field-creator($color, $background-color, $border-color, $accent-color){
+@mixin text-field-creator($color, $background-color, $border-color, $accent-color) {
   border: solid 1px $border-color;
   border-radius: 5px;
   font-size: 0.8rem;
   height: min-content;
-  transition: border .3s, box-shadow .3s;
-  @apply p-1;
- &:focus, &:active{
-  border-color: $accent-color;
-  box-shadow: 0 0 5px 0px $accent-color;
- }
-}
-
-
-@mixin link($color, $hoverColor, $decoration: true) {
-  color: $color;
-  position: relative;
-  transition: color 0.3s;
-  @apply p-1;
-  &:hover {
-    color: $hoverColor;
-    cursor: pointer;
+  transition: border 0.3s, box-shadow 0.3s;
+  @apply p-1 m-1;
+  &:focus,
+  &:active {
+    border-color: $accent-color;
+    box-shadow: 0 0 5px 0px $accent-color;
   }
-  &:before {
-    content: "";
-    border-bottom: solid;
-    border-bottom-width: 1.5px;
-    border-bottom-color: $hoverColor;
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: 100% 0%;
-    @apply absolute top-0 left-0 w-full h-full;
-  }
-  @if $decoration == true {
-    &:hover::before {
-      transform-origin: 0% 50%;
-      transform: scaleX(1);
+  &.invalid {
+    border-color: $red-color;
+    box-shadow: none;
+    &:focus,
+    &:active {
+      box-shadow: 0 0 5px 0px $red-color;
+    }
+    &::placeholder {
+      color: $red-color;
     }
   }
 }
