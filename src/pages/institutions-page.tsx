@@ -19,14 +19,11 @@ export const InstitutionsPage: React.FC = () => {
 	
 	useEffect(() => {
 		window.scrollTo({top:0});
-		const loadInitialData = async () => {
-			await InstitutionAPI.getAll().then((result) => {
-				store.dispatch(institutionsSlice.actions.set(result));
-				setFiltered(result);
-			});
-		};
-		loadInitialData();
 	}, []);
+
+	useEffect(() => {
+		setFiltered(institutions)
+	}, [institutions]);
 
 	const filter = (value: string) => {
 		// eslint-disable-next-line array-callback-return
