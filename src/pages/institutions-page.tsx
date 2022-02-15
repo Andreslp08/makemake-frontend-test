@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import InstitutionAPI from "../api/institution.api";
-import { AddInstitution } from "../components/add-institute-card";
+import { AddInstitution } from "../components/add-institution";
 import { BreadCrumbs, BreadCrumbsLink } from "../components/breadcrumbs";
 import { InstitutionCard } from "../components/institution-card";
 import { SearchInput } from "../components/search-input";
