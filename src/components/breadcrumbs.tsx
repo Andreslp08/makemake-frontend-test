@@ -5,12 +5,14 @@ import React, { Children, isValidElement, ReactElement, useEffect, useRef, useSt
 const BreadCrumbs: React.FC = ({ children }) => {
 	
 	const getBreadCrumbsLinks = () => {
-		return Children.map(children, (child) => {
+		return Children.map(children, (child,i) => {
 			if (isValidElement(child) && (child as ReactElement<any>).type == BreadCrumbsLink) {
 				return (
 					<>
 						{child}
+						{i+1 < Children.count(children)&&
 							<Icon className="separator" icon={'dashicons:arrow-up-alt2'}/>
+						}
 					</>
 				);
 			}
@@ -35,11 +37,12 @@ const BreadCrumbs: React.FC = ({ children }) => {
 type BreadCrumbLinkProps = {
 	text?: string;
 	onSelect?():void;
+	current?:boolean;
 };
 
-const BreadCrumbsLink: React.FC<BreadCrumbLinkProps> = ({ text, onSelect }) => {
+const BreadCrumbsLink: React.FC<BreadCrumbLinkProps> = ({ text, onSelect, current }) => {
 	return (
-		<p  className="link cursor-pointer" onClick={()=>onSelect&&onSelect()}>
+		<p  className={`link ${current&&'current'}`} onClick={()=>onSelect&&onSelect()}>
 			{text}
 		</p>
 	);
